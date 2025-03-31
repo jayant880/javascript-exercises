@@ -1,5 +1,16 @@
-const findTheOldest = function() {
+const getAge = function (person) {
+    person.yearOfDeath ??= new Date().getFullYear();
 
+    return person.yearOfDeath - person.yearOfBirth;
+};
+
+const findTheOldest = function (people) {
+    const peopleOldToYoung = people.toSorted(
+        (person, nextPerson) => getAge(nextPerson) - getAge(person),
+    );
+
+    const oldestPerson = peopleOldToYoung[0];
+    return oldestPerson;
 };
 
 // Do not edit below this line
